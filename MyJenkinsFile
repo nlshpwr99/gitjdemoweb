@@ -39,8 +39,7 @@ pipeline {
 		
 		stage('Deployment Stage') {
 			steps {
-			sh 'whoami'
-			sh 'sudo cp -f target/*.war /tmp/webapps/'
+			sh 'scp -o StrictHostKeyChecking=no target/*.war apatle@10.20.220.168:/home/apatle/Installed_softwares/apache-tomcat-8.5.23/webapps/'
 			}
 		}
 		
