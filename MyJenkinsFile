@@ -40,7 +40,7 @@ pipeline {
 		stage('Deployment Stage') {
 			steps {
 			sh 'whoami'
-				sh "cp target/*.war /tmp/webapps/"
+			sh 'sudo cp -f target/*.war /tmp/webapps/'
 			}
 		}
 		
