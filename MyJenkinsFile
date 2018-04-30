@@ -40,7 +40,7 @@ pipeline {
 		stage('Deployment Stage') {
 			steps {
 			sh 'whoami'
-				sh "cp target/*.war /home/nilesh/Programs/apache-tomcat-8.0.39/webapps/"
+				sh "cp target/*.war /tmp/webapps/"
 			}
 		}
 		
