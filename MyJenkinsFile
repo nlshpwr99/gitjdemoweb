@@ -1,0 +1,49 @@
+
+pipeline {
+
+	agent any
+	
+	 tools {
+        maven 'MAVEN_HOME' 
+        jdk 'JAVA_HOME'
+    }
+
+	stages {
+	
+	stage('Cheking initialization') {
+            steps {
+                sh 'mvn --version'
+                sh 'java -version'
+            }
+        }
+        
+		
+		stage('Compile Stage') {
+			steps {
+					sh 'mvn clean compile'
+				
+			}
+		}
+		
+		stage('Testing Stage') {
+			steps {
+					sh 'mvn test'
+			}
+		}
+		
+		stage('Packaging stage') {
+			steps {
+					sh 'mvn package'
+			}
+		}
+		
+		stage('Deployment Stage') {
+			steps {
+				sh "cp target/*.war /home/nilesh/Programs/apache-tomcat-8.0.39/webapps/pipeline.war"
+			}
+		}
+		
+
+	}
+	
+}
