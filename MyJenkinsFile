@@ -1,7 +1,8 @@
 
 pipeline {
 
-	agent any
+	//agent any
+	agent none
 	
 	 tools {
         maven 'MAVEN_HOME' 
@@ -11,6 +12,7 @@ pipeline {
 	stages {
 	
 	stage('Cheking initialization') {
+	agent { label 'NileshPc' }
             steps {
                 sh 'mvn --version'
                 sh 'java -version'
@@ -19,6 +21,7 @@ pipeline {
         
 		
 		stage('Compile Stage') {
+		agent { label 'NileshPc' }
 			steps {
 					sh 'mvn clean compile'
 				
@@ -26,20 +29,23 @@ pipeline {
 		}
 		
 		stage('Testing Stage') {
+		agent { label 'NileshPc' }
 			steps {
 					sh 'mvn test'
 			}
 		}
 		
 		stage('Packaging stage') {
+		agent { label 'NileshPc' }
 			steps {
 					sh 'mvn package'
 			}
 		}
 		
 		stage('Deployment Stage') {
+		agent { label 'NileshPc' }
 			steps {
-			sh 'scp -o StrictHostKeyChecking=no target/*.war apatle@10.20.220.168:/home/apatle/Installed_softwares/apache-tomcat-8.5.23/webapps/'
+			sh 'cp target/*.war /home/nilesh/Programs/apache-tomcat-8.0.39/webapps/new4.war'
 			}
 		}
 		
